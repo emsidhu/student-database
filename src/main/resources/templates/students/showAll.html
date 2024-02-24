@@ -15,16 +15,19 @@
         <div class="row justify-content-center">
             <h1 class="text-center mt-2 mb-4 shadow">View Students</h1>
             <div class="col-md-6 text-center">
+                <!-- Card styled with student's height, width, hair color, eye color -->
                 <div class="card text-center mx-auto mb-3" th:each="student:${students}" 
                     th:style="'min-width:'+${student.weight}/3.8+'rem; min-height:'+${student.height}/15+'rem;
                     width:'+${student.weight}/3+'vw; height:'+${student.height}/5+'vh; border-color:'+${student.eyeColor}+';'">
-                    
+                    <!-- Header with student's name -->
                     <div class="card-header bg-transparent" th:style="'font-size:'+${student.height}/40+'vh; color:'+${student.hairColor}+'; border-color:'+${student.eyeColor}+';'" 
                         th:text="${student.name}"></div>
+                    <!-- Age and GPA text -->
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <span class="card-text" th:style="'font-size:'+${student.height}/50+'vh;'" th:text="'Age: '+${student.age}"></span>
                         <span class="card-text" th:style="'font-size:'+${student.height}/50+'vh;'" th:text="'GPA: '+${student.gpa}"></span>
                     </div>
+                    <!-- Edit and Delete Buttons -->
                     <div class="card-footer d-flex bg-transparent" th:style="'border-color:'+${student.eyeColor}+';'">
                         <a th:href="@{/students/edit/{id}(id=${student.id})}" th:style="'font-size:'+${student.height}/55+'vh;'" class="btn btn-outline-primary btn-fill mx-3">Edit</a>
                         <a th:onclick="'deleteStudent('+${student.id}+')'" th:id="${student.id}" th:style="'font-size:'+${student.height}/55+'vh;'" class="btn btn-outline-danger btn-fill mx-3">Delete</a>
@@ -32,8 +35,9 @@
                 </div>
             </div>
         </div>
+        <!-- Add Student Button -->
         <div class="row justify-content-center mt-5">
-            <div class="d-grid gap-2 col-3 mx-auto">
+            <div class="d-grid gap-2 col-3 mx-auto mb-3">
                 <a th:href="@{/add.html}" class="btn btn-primary btn-lg">Add Student</a>
             </div>
         </div>

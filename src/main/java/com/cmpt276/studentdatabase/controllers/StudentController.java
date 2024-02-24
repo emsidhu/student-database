@@ -26,25 +26,24 @@ public class StudentController {
     @GetMapping("/students/view")
     public String getAllStudents(Model model){
         System.out.println("Getting all students");
-        // Get all users from database
+        // Get all students from database
         List<Student> students = studentRepo.findAllByOrderByIdAsc();
-        // End of database call
         model.addAttribute("students", students);
         return "students/showAll";
     }
 
     @GetMapping("students/edit/{id}")
     public String getEditForm(@PathVariable("id") int id, Model model) {
+        // Get student to edit
         Student student = studentRepo.findById(id);
         model.addAttribute("student", student);
         return "students/editStudent";
     }
     
-
     @PostMapping("/students/add")
     public String addStudent(@RequestParam Map<String, String> newStudent, HttpServletResponse response) {
         System.out.println("Add student");
-
+        // Set new student's attributes
         String newName = newStudent.get("name");
         String newHairColor = newStudent.get("hairColor");
         String newEyeColor = newStudent.get("eyeColor");
@@ -52,6 +51,7 @@ public class StudentController {
         int newWeight = Integer.parseInt(newStudent.get("weight"));
         int newHeight = Integer.parseInt(newStudent.get("height"));
         float newGPA = Float.parseFloat(newStudent.get("gpa"));
+
         studentRepo.save(new Student(newName, newHairColor, newEyeColor, newAge, newWeight, newHeight, newGPA));
 
         response.setStatus(201);
@@ -65,8 +65,6 @@ public class StudentController {
         response.setStatus(200);
         return "redirect:/students/view";
     }
-
-
 
     @DeleteMapping("/students/delete/{id}")
     public void deleteStudent(@PathVariable int id, HttpServletResponse response) {

@@ -15,6 +15,7 @@ public class Student {
     private int weight;
     private int height;
     private float gpa;
+    
     public Student() {}
     public Student(String name, String hairColor, String eyeColor, int age, int weight, int height, float gpa) {
         this.name = name;

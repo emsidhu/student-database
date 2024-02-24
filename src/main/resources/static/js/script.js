@@ -1,8 +1,3 @@
-// const deleteButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
-// deleteButtons.forEach(button => {
-//     button.addEventListener('click', deleteStudent);
-// });
-
 function deleteStudent(id) {
     fetch(`/students/delete/${id}`, {
         method: 'DELETE',
